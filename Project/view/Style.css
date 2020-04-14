@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 21, 2020, 4:03:23 PM
+    Author     : alaro
+*/
+.JFX_tf {
+    -fx-prompt-text-fill: white;
+    -fx-text-inner-color: white;
+    -jfx-unfocus-color: white;
+    -jfx-focus-color: white;
+}
+.date-picker .text-field {
+    -fx-control-inner-background: #4287B0;
+    -fx-alignment: center;
+    -fx-prompt-text-fill: white;
+    -jfx-unfocus-color: white;
+    -jfx-focus-color: white;
+    -fx-text-inner-color: white;
+    -fx-text-alignment: center;
+    
+}
