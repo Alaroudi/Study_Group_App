@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane fx:id="Settings" orientation="VERTICAL" prefHeight="666.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.controller.SettingsController">
+    <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="229.0" prefWidth="598.0">
+            <children>
+                <Text fill="#002a5a" layoutX="240.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
+                    <font>
+                        <Font size="32.0" />
+                    </font>
+                </Text>
+            <JFXTextField fx:id="firstNameField" labelFloat="true" layoutX="207.0" layoutY="127.0" prefHeight="27.0" prefWidth="176.0" />
+            <JFXTextField fx:id="lastNameField" labelFloat="true" layoutX="207.0" layoutY="236.0" prefHeight="27.0" prefWidth="176.0" />
+            <JFXTextField fx:id="usernameField" labelFloat="true" layoutX="207.0" layoutY="345.0" prefHeight="27.0" prefWidth="176.0" />
+            <JFXTextField fx:id="passwordField" labelFloat="true" layoutX="207.0" layoutY="454.0" prefHeight="27.0" prefWidth="176.0" />
+                <JFXButton buttonType="RAISED" contentDisplay="RIGHT" layoutX="231.0" layoutY="563.0" onAction="#saveSettings" prefHeight="30.0" prefWidth="129.0" style="-fx-background-color: #208fe8; -fx-background-radius: 10;" text="Save Changes" textFill="WHITE">
+                    <graphic>
+                        <FontAwesomeIcon fill="WHITE" iconName="SAVE" size="14" text="" textAlignment="JUSTIFY" />
+                    </graphic></JFXButton>
+            <Text layoutX="142.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update your settings below. Changes will take effect next time you log in." textAlignment="CENTER" wrappingWidth="307.0" />
+            </children>
+        </AnchorPane>
+    </items>
+</SplitPane>

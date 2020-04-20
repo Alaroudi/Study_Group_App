@@ -27,8 +27,6 @@ import javafx.stage.Stage;
  * @author alaro
  */
 public class MainSceneController extends LoginController implements Initializable {
-
-
     @FXML
     private Text username_mainscene;
     @FXML
@@ -43,7 +41,6 @@ public class MainSceneController extends LoginController implements Initializabl
     private Button logoutButton;
     @FXML
     private BorderPane mainPane;
-   
 
     /**
      * Initializes the controller class.
@@ -52,9 +49,9 @@ public class MainSceneController extends LoginController implements Initializabl
     public void initialize(URL url, ResourceBundle rb) {
         
         // TODO
-        
+
         username_mainscene.setText(user.getFirstname() + " " + user.getLasttname());
-   
+
         try {
             SplitPane root = (SplitPane)FXMLLoader.load(getClass().getResource("/Project/view/FindStudyGroups.fxml")); 
             mainPane.setCenter(root);
@@ -63,7 +60,7 @@ public class MainSceneController extends LoginController implements Initializabl
         }
    
         
-    }    
+    }
 
     @FXML
     private void handleButtons(ActionEvent event) throws IOException {
@@ -73,9 +70,8 @@ public class MainSceneController extends LoginController implements Initializabl
             mainPane.setCenter(root);    
         }
         else if (event.getSource() == createStudyGroupButton){
-            
-            
-            
+
+
         }
         else if (event.getSource() == findStudyMaterialsButton){
             
@@ -83,9 +79,8 @@ public class MainSceneController extends LoginController implements Initializabl
             
         }
         else if(event.getSource() == settingsButtons){
-            
-        
-            
+            SplitPane root = (SplitPane)FXMLLoader.load(getClass().getResource("/Project/view/Settings.fxml"));
+            mainPane.setCenter(root);
         }
   
     }

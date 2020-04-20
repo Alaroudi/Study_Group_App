@@ -131,7 +131,6 @@ public class LoginController implements Initializable  {
         
         try{
             File file = new File("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\Users.txt");
-
             scan = new Scanner(file);
             scan.useDelimiter("[,\n]");
                 
