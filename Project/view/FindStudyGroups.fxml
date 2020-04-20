@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<SplitPane fx:id="FindStudyGroup" dividerPositions="0.3358433734939759" orientation="VERTICAL" prefHeight="666.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.controller.FindStudyGroupsController">
+   <items>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="229.0" prefWidth="598.0">
+         <children>
+            <Text fill="#002a5a" layoutX="252.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Text>
+            <JFXTextField alignment="TOP_LEFT" labelFloat="true" layoutX="98.0" layoutY="86.0" prefWidth="170.0" promptText="Major" />
+            <JFXTextField labelFloat="true" layoutX="330.0" layoutY="86.0" prefWidth="170.0" promptText="Course Type" />
+            <JFXTextField labelFloat="true" layoutX="98.0" layoutY="136.0" prefWidth="170.0" promptText="Course Number" />
+            <JFXTextField labelFloat="true" layoutX="330.0" layoutY="136.0" prefWidth="170.0" promptText="Section Number" />
+            <JFXButton contentDisplay="RIGHT" layoutX="249.0" layoutY="183.0" prefWidth="100.0" style="-fx-background-color: #208fe8; -fx-background-radius: 10;" text="Search" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIcon fill="WHITE" iconName="SEARCH" size="13" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <Text fill="#002a5a" layoutX="249.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Results">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </items>
+</SplitPane>
