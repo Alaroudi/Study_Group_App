@@ -6,10 +6,14 @@
 package Project.controller;
 
 import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
@@ -30,31 +34,16 @@ public class MainSceneController extends LoginController implements Initializabl
     @FXML
     private JFXButton findStudyGroupButton;
     @FXML
-    private SplitPane findStudyGroup;
-    @FXML
     private JFXButton createStudyGroupButton;
     @FXML
     private JFXButton findStudyMaterialsButton;
     @FXML
     private JFXButton settingsButtons;
     @FXML
-    private BorderPane Settings;
-    @FXML
-    private BorderPane createStudyGroup;
-    @FXML
-    private BorderPane findStudyMaterials;
-    @FXML
     private Button logoutButton;
+    @FXML
+    private BorderPane mainPane;
    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     /**
      * Initializes the controller class.
@@ -64,36 +53,41 @@ public class MainSceneController extends LoginController implements Initializabl
         
         // TODO
         
-        System.out.println(user.getFirstname());
-       
         username_mainscene.setText(user.getFirstname() + " " + user.getLasttname());
+   
+        try {
+            SplitPane root = (SplitPane)FXMLLoader.load(getClass().getResource("/Project/view/FindStudyGroups.fxml")); 
+            mainPane.setCenter(root);
+        } catch (IOException ex) {
+            Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   
+        
     }    
 
-
-
     @FXML
-    private void handleButtons(ActionEvent event) {
-        if (event.getSource() == findStudyGroupButton)
-        {
-            findStudyGroup.toFront();
-           
-             
+    private void handleButtons(ActionEvent event) throws IOException {
+        if (event.getSource() ==  findStudyGroupButton){
+            
+            SplitPane root = (SplitPane)FXMLLoader.load(getClass().getResource("/Project/view/FindStudyGroups.fxml"));
+            mainPane.setCenter(root);    
         }
-        else if (event.getSource() == createStudyGroupButton)
-        {
-            createStudyGroup.toFront();
+        else if (event.getSource() == createStudyGroupButton){
+            
+            
             
         }
-         else if (event.getSource() == findStudyMaterialsButton)
-        {
-            findStudyMaterials.toFront();
+        else if (event.getSource() == findStudyMaterialsButton){
+            
+            
             
         }
-         else if (event.getSource() == settingsButtons)
-        {
-            Settings.toFront();
+        else if(event.getSource() == settingsButtons){
+            
+        
             
         }
+  
     }
 
     @FXML
@@ -101,10 +95,6 @@ public class MainSceneController extends LoginController implements Initializabl
          Stage stage = (Stage) logoutButton.getScene().getWindow();
         stage.close();
     }
-    
-  
- 
-   
     
     
 }
