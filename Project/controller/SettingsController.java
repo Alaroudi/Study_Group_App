@@ -62,13 +62,12 @@ public class SettingsController extends MainSceneController implements Initializ
         changedUser.setUserInfo(newFirstName, newLastName, user.getBirthDate(), newUsername, newPassword);
 
         try{
-            // File file = new File("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\Users.txt");
-            File oldFile = new File("/Users/alanacquinones/Desktop/Users.txt");
+            File oldFile = new File("Project/model/Users.txt");
             scan = new Scanner(oldFile);
             scan.useDelimiter("[,\n]");
 
-            File tmpFile = new File("/Users/alanacquinones/Desktop/tmpUsers.txt");
-            FileWriter fileWriter = new FileWriter("/Users/alanacquinones/Desktop/tmpUsers.txt",false);
+            File tmpFile = new File("Project/model/tmpUsers.txt");
+            FileWriter fileWriter = new FileWriter("Project/model/tmpUsers.txt",false);
             BufferedWriter print = new BufferedWriter(fileWriter);
 
             UserInfo tmpUser = new UserInfo();
@@ -87,8 +86,10 @@ public class SettingsController extends MainSceneController implements Initializ
                             + tmpUser.getPassword() + "\n");
                 }
             }
+
+            
             oldFile.delete();
-            File newFile = new File("/Users/alanacquinones/Desktop/Users.txt");
+            File newFile = new File("Project/model/Users.txt");
             tmpFile.renameTo(newFile);
             print.flush();
             print.close();
