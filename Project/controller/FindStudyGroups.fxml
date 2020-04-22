@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="searchPane" prefHeight="666.0" prefWidth="600.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.controller.FindStudyGroupsController">
+   <children>
+      <BorderPane layoutY="30.0" prefHeight="313.0" prefWidth="648.0" AnchorPane.bottomAnchor="323.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+         <center>
+            <TableView fx:id="tbl" onMouseClicked="#handleSGInfo" prefHeight="295.0" prefWidth="648.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="col_CourseType" prefWidth="211.0" text="Course Type" />
+                <TableColumn fx:id="col_CourseNumber" prefWidth="233.0" text="Course Number" />
+                  <TableColumn fx:id="col_SectionNumber" prefWidth="203.0" text="Section Number" />
+              </columns>
+            </TableView>
+         </center>
+      </BorderPane>
+      <Separator layoutY="388.0" prefHeight="12.0" prefWidth="648.0" />
+      <JFXTextField fx:id="numberTF" labelFloat="true" layoutX="236.0" layoutY="361.0" onAction="#search2" onKeyReleased="#search2" prefHeight="27.0" prefWidth="176.0" promptText="Course Number" />
+      <JFXTextField fx:id="snumberTF" labelFloat="true" layoutX="458.0" layoutY="361.0" onAction="#search3" onKeyReleased="#search3" prefHeight="27.0" prefWidth="176.0" promptText="Section Number" />
+      <JFXTextField fx:id="typeTF" labelFloat="true" layoutX="14.0" layoutY="361.0" onKeyReleased="#search" prefHeight="27.0" prefWidth="176.0" promptText="Course Type" />
+      <Text fill="#002a5a" layoutX="291.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#002a5a" layoutX="223.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Study Group Results">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <JFXTextArea fx:id="resultsTF" layoutX="-2.0" layoutY="428.0" prefHeight="236.0" prefWidth="648.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextArea>
+      <Label layoutX="164.0" layoutY="354.0" text="Label" />
+   </children>
+</AnchorPane>
