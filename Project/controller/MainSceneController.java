@@ -6,6 +6,7 @@
 package Project.controller;
 
 import com.jfoenix.controls.JFXButton;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -53,7 +55,7 @@ public class MainSceneController extends LoginController implements Initializabl
         username_mainscene.setText(user.getFirstname() + " " + user.getLasttname());
 
         try {
-            SplitPane root = (SplitPane)FXMLLoader.load(getClass().getResource("/Project/view/FindStudyGroups.fxml")); 
+            AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/FindStudyGroups.fxml")); 
             mainPane.setCenter(root);
         } catch (IOException ex) {
             Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,11 +68,12 @@ public class MainSceneController extends LoginController implements Initializabl
     private void handleButtons(ActionEvent event) throws IOException {
         if (event.getSource() ==  findStudyGroupButton){
             
-            SplitPane root = (SplitPane)FXMLLoader.load(getClass().getResource("/Project/view/FindStudyGroups.fxml"));
+          AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/FindStudyGroups.fxml"));
             mainPane.setCenter(root);    
         }
         else if (event.getSource() == createStudyGroupButton){
-
+        	 AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/CreateGroupView.fxml"));
+             mainPane.setCenter(root);
 
         }
         else if (event.getSource() == findStudyMaterialsButton){
@@ -79,7 +82,7 @@ public class MainSceneController extends LoginController implements Initializabl
             
         }
         else if(event.getSource() == settingsButtons){
-            SplitPane root = (SplitPane)FXMLLoader.load(getClass().getResource("/Project/view/Settings.fxml"));
+            SplitPane root = (SplitPane)FXMLLoader.load(getClass().getResource("/Settings.fxml"));
             mainPane.setCenter(root);
         }
   
