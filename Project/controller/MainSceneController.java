@@ -55,7 +55,7 @@ public class MainSceneController extends LoginController implements Initializabl
         username_mainscene.setText(user.getFirstname() + " " + user.getLasttname());
 
         try {
-            AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/FindStudyGroups.fxml")); 
+            AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/Project/view/FindStudyGroups.fxml")); 
             mainPane.setCenter(root);
         } catch (IOException ex) {
             Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
@@ -68,11 +68,11 @@ public class MainSceneController extends LoginController implements Initializabl
     private void handleButtons(ActionEvent event) throws IOException {
         if (event.getSource() ==  findStudyGroupButton){
             
-          AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/FindStudyGroups.fxml"));
+          AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/Project/view/FindStudyGroups.fxml"));
             mainPane.setCenter(root);    
         }
         else if (event.getSource() == createStudyGroupButton){
-        	 AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/CreateGroupView.fxml"));
+        	 AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/Project/view/CreateGroupView.fxml"));
              mainPane.setCenter(root);
 
         }
@@ -82,7 +82,7 @@ public class MainSceneController extends LoginController implements Initializabl
             
         }
         else if(event.getSource() == settingsButtons){
-            SplitPane root = (SplitPane)FXMLLoader.load(getClass().getResource("/Settings.fxml"));
+            SplitPane root = (SplitPane)FXMLLoader.load(getClass().getResource("/Project/view/Settings.fxml"));
             mainPane.setCenter(root);
         }
   
