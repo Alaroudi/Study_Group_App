@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane prefHeight="666.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.controller.CreateGroupController"
+   <children>
+      <Label fx:id="errorLabel" layoutX="85.0" layoutY="544.0" prefHeight="41.0" prefWidth="418.0" />
+      <Text fill="#002a5a" layoutX="148.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a Study Group">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Text>
+      <Text fill="#002a5a" layoutX="262.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meet Day(s)">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#002a5a" layoutX="263.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meet Time">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#002a5a" layoutX="251.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meet Location">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#002a5a" layoutX="233.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Information">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#002a5a" layoutX="273.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <JFXTextField fx:id="dayTF" labelFloat="true" layoutX="91.0" layoutY="140.0" prefHeight="41.0" prefWidth="418.0" promptText="Enter The Meet Day(s) (ex: MTWTFSU)" />
+      <JFXTextField fx:id="timeTF" labelFloat="true" layoutX="91.0" layoutY="232.0" prefHeight="41.0" prefWidth="418.0" promptText="Enter The Meet Time(ex: either ##:##AM/PM or #:##AM/PM)" />
+      <JFXTextField fx:id="locationTF" labelFloat="true" layoutX="86.0" layoutY="313.0" prefHeight="41.0" prefWidth="418.0" promptText="Enter The Meet Location(ex: JPL) " />
+      <JFXTextField fx:id="contactTF" labelFloat="true" layoutX="87.0" layoutY="405.0" prefHeight="41.0" prefWidth="418.0" promptText="Enter Your Contact Information." />
+      <JFXTextField fx:id="courseTypeTF" labelFloat="true" layoutX="85.0" layoutY="494.0" prefHeight="41.0" prefWidth="418.0" promptText="Enter The Course (ex: CS 3443 003)" />
+      <JFXButton buttonType="RAISED" contentDisplay="RIGHT" layoutX="232.0" layoutY="585.0" onAction="#handleCreateGroup" prefHeight="30.0" prefWidth="129.0" style="-fx-background-color: #208fe8; -fx-background-radius: 10;" text="Save Changes" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIcon fill="WHITE" iconName="SAVE" size="14" text="" textAlignment="JUSTIFY" />
+         </graphic>
+      </JFXButton>
+    
+   </children>
+</AnchorPane>
