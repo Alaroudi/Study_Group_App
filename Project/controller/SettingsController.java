@@ -67,6 +67,7 @@ public class SettingsController extends MainSceneController implements Initializ
             scan.useDelimiter("[,\n]");
 
             File tmpFile = new File("Project/model/tmpUsers.txt");
+
             FileWriter fileWriter = new FileWriter("Project/model/tmpUsers.txt",false);
             BufferedWriter print = new BufferedWriter(fileWriter);
 
@@ -87,12 +88,40 @@ public class SettingsController extends MainSceneController implements Initializ
                 }
             }
 
-            
-            oldFile.delete();
-            File newFile = new File("Project/model/Users.txt");
-            tmpFile.renameTo(newFile);
+            // close/flush everything
+            scan.close();
+            fileWriter.flush();
             print.flush();
             print.close();
+            fileWriter.close();
+
+            System.out.println("old File (before deletion):" + oldFile.getAbsolutePath());
+
+            boolean isDeleted = oldFile.delete();
+
+            if(isDeleted) {
+                System.out.println("old File was deleted");
+            }
+            else {
+                System.out.println("old File was not deleted");
+            }
+
+            System.out.println("old File (after deletion):" + oldFile.getAbsolutePath());
+
+            System.out.println("tmp File (before renaming):" + tmpFile.getAbsolutePath());
+
+            File newFile = new File("Project/model/Users.txt");
+
+            boolean isRenamed = tmpFile.renameTo(newFile);
+
+            if(isRenamed) {
+                System.out.println("tmp File was renamed");
+            }
+            else {
+                System.out.println("tmp File was not renamed");
+            }
+
+            System.out.println("tmp File (after renaming):" + tmpFile.getAbsolutePath());
 
             firstNameField.clear();
             lastNameField.clear();
