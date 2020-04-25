@@ -18,7 +18,13 @@ import javafx.stage.StageStyle;
  * @author alaro
  */
 public class Main extends Application {
-    
+
+    /**
+     * start(Stage stage) starts the application
+     *
+     * @param stage
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -31,6 +37,8 @@ public class Main extends Application {
     }
 
     /**
+     * main(String[] args) launches the application
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args){

@@ -41,6 +41,5 @@
             <Font size="14.0" />
          </font>
       </JFXTextArea>
-      <Label layoutX="164.0" layoutY="354.0" text="Label" />
    </children>
 </AnchorPane>

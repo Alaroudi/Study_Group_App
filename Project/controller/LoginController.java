@@ -10,12 +10,14 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,15 +29,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-
-
-
 /**
+ * LoginController class controls the Login.fxml scene
  *
  * @author alaro
  */
-public class LoginController implements Initializable  {
-
+public class LoginController implements Initializable {
     @FXML
     private JFXPasswordField password;
     @FXML
@@ -46,27 +45,34 @@ public class LoginController implements Initializable  {
     private JFXTextField username_email;
     @FXML
     private Text wrongSigns;
-    
+
     protected static UserInfo user = new UserInfo();
 
-    
 
+    /**
+     * initialize(URL url, ResourceBundle rb) initializes the Login.fxml scene
+     *
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-    }   
-  
-    
-     
 
+    }
+
+    /**
+     * signIn(ActionEvent event) signs a user in when they click on 'Sign in' buttons
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void signIn(ActionEvent event) throws IOException {
-         
+
         boolean x = verifyLogin(username_email.getText(), password.getText());
-        
-        if (x == true)
-        {
+
+        if (x == true) {
             wrongSigns.setVisible(false);
             Parent root = FXMLLoader.load(getClass().getResource("/Project/view/MainScene.fxml"));
             Scene scene = new Scene(root);
@@ -74,37 +80,43 @@ public class LoginController implements Initializable  {
             stage.setScene(scene);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.show();
-                    
-        }
-        else
-        {
+
+        } else {
             wrongSigns.setVisible(true);
-        }   
-        
+        }
+
     }
 
-   
+
+    /**
+     * showPass(ActionEvent event) shows the password when user checks 'Show Password' box
+     *
+     * @param event
+     */
     @FXML
     private void showPass(ActionEvent event) {
-        
-       
-        if (show.isSelected() && !password.getText().equals(""))
-        {
+
+
+        if (show.isSelected() && !password.getText().equals("")) {
             String str = password.getText();
-            password.setPromptText(str); 
-        }
-        else
-        {
+            password.setPromptText(str);
+        } else {
             password.setPromptText("Password");
-            
+
         }
-        
+
     }
 
+    /**
+     * Signup(ActionEvent event) loads Singup.fxml scene when user clicks on 'Signup' link
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void Signup(ActionEvent event) throws IOException {
-        
-              
+
+
         Parent root = FXMLLoader.load(getClass().getResource("/Project/view/Signup.fxml"));
         Scene scene = new Scene(root);
         Stage stage = new Stage();
@@ -113,63 +125,55 @@ public class LoginController implements Initializable  {
         stage.show();
     }
 
+    /**
+     * Close(MouseEvent event) closes the scene
+     *
+     * @param event
+     */
     @FXML
     private void Close(MouseEvent event) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
 
-    
-   
-    
 
-    private boolean verifyLogin(String username, String password)
-    {
-        
+    /**
+     * verifyLogin(String username, String password) checks if a login is valid
+     *
+     * @param username
+     * @param password
+     * @return whether login was valid or not
+     */
+    private boolean verifyLogin(String username, String password) {
+
         Scanner scan;
-        
-        
-        try{
-            File file = new File("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\Users.txt");
+
+
+        try {
+            //File file = new File("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\Users.txt");
+            File file = new File("Project/model/Users.txt");
             scan = new Scanner(file);
             scan.useDelimiter("[,\n]");
-                
-        while(scan.hasNext())
-        {   
-            user.setUserInfo(scan.next(), scan.next(), scan.next(), scan.next(), scan.next());
-            
-            if (username.equals(user.getUsername()) && password.equals(user.getPassword()))
-            {
-                return true;
-                
+
+            while (scan.hasNext()) {
+                user.setUserInfo(scan.next(), scan.next(), scan.next(), scan.next(), scan.next());
+
+                if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
+                    return true;
+
+                }
+
             }
-            
-        }
-                
-        }catch (FileNotFoundException e){
+
+        } catch (FileNotFoundException e) {
             System.out.println(e);
         }
 
-        
+
         return false;
-        
-        
+
+
     }
 
-  
-    
-  
-    
-    
 
-
-    
-   
-    
-
-   
-    
-    
-    
-    
 }

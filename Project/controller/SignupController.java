@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,6 +31,7 @@ import javafx.util.Duration;
 
 
 /**
+ * Signup class controls the Singup.fxml scene
  *
  * @author alaro
  */
@@ -56,72 +59,79 @@ public class SignupController implements Initializable {
     private JFXDatePicker birthDate;
     @FXML
     private AnchorPane rootAnchorPane;
-   
-    
+
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-       rootAnchorPane.setOpacity(0);
-       fadeInTransition();
-       
-        
-    }    
-    
-  
-    
+        rootAnchorPane.setOpacity(0);
+        fadeInTransition();
+
+
+    }
+
+
+    /**
+     * Close(MouseEvent event) closes the scene
+     *
+     * @param event
+     */
     @FXML
     private void Close(MouseEvent event) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
-        
+
     }
 
+    /**
+     * signup(ActionEvent event) signs a user up when they click on 'Signup' button
+     *
+     * @param event
+     */
     @FXML
     private void signup(ActionEvent event) {
-        
-        
-        
-        
-       try{
-           
-            
-            FileWriter fstream = new FileWriter("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\Users.txt",true);
+
+
+        try {
+
+
+            FileWriter fstream = new FileWriter("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\Users.txt", true);
             BufferedWriter print = new BufferedWriter(fstream);
             LocalDate date = birthDate.getValue();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
-            
-            if (password.getText().equals(password_conf.getText()))
-            {
-                
+
+            if (password.getText().equals(password_conf.getText())) {
+
                 passError.setVisible(false);
-                print.write(firstname.getText() + "," +lastname.getText() + ","
-                + formatter.format(date) + "," +  username_email.getText() + "," 
-                + password.getText() +"\n");
-                
-                successful.setText("Successful");        
-                
-            }
-            else
-            {
+                print.write(firstname.getText() + "," + lastname.getText() + ","
+                        + formatter.format(date) + "," + username_email.getText() + ","
+                        + password.getText() + "\n");
+
+                successful.setText("Successful");
+
+            } else {
                 passError.setText("Passwords don't match!");
                 passError.setVisible(true);
             }
-            
-            
+
+
             print.close();
-            
-          }catch (IOException e){
-              
+
+        } catch (IOException e) {
+
             System.err.println("Error while writing to file: " +
-            e.getMessage());
-          }
-    
+                    e.getMessage());
+        }
+
     }
 
+    /**
+     * fadeInTransition() handles the fade in transition
+     */
     private void fadeInTransition() {
         FadeTransition fade = new FadeTransition();
         fade.setDuration(Duration.millis(1000));
@@ -129,9 +139,8 @@ public class SignupController implements Initializable {
         fade.setFromValue(0);
         fade.setToValue(1);
         fade.play();
-        
+
     }
-    
-     
+
 
 }

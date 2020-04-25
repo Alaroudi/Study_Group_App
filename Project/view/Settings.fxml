@@ -23,7 +23,8 @@
                 <JFXButton buttonType="RAISED" contentDisplay="RIGHT" layoutX="231.0" layoutY="563.0" onAction="#saveSettings" prefHeight="30.0" prefWidth="129.0" style="-fx-background-color: #208fe8; -fx-background-radius: 10;" text="Save Changes" textFill="WHITE">
                     <graphic>
                         <FontAwesomeIcon fill="WHITE" iconName="SAVE" size="14" text="" textAlignment="JUSTIFY" />
-                    </graphic></JFXButton>
+                    </graphic>
+            </JFXButton>
             <Text layoutX="142.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update your settings below. Changes will take effect next time you log in." textAlignment="CENTER" wrappingWidth="307.0" />
             </children>
         </AnchorPane>
