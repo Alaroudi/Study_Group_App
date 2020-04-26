@@ -85,7 +85,7 @@ public class MainSceneController extends LoginController implements Initializabl
 
 
         } else if (event.getSource() == settingsButtons) {
-            SplitPane root = (SplitPane) FXMLLoader.load(getClass().getResource("/Project/view/Settings.fxml"));
+            AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/Project/view/Settings.fxml"));
             mainPane.setCenter(root);
         }
 
