@@ -25,7 +25,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * FindStudyGroupsController class controls the FindStudyGroups.fxml scene
@@ -57,8 +56,8 @@ public class FindStudyGroupsController implements Initializable {
     @FXML
     private TableColumn<SearchTabModel, String> col_SectionNumber;
 
-    private Scanner scn1;
-    private Scanner scn2;
+    private Scanner scanner1;
+    private Scanner scanner2;
 
     //the data that will be displayed in tableview
     ObservableList<SearchTabModel> list = FXCollections.observableArrayList();
@@ -82,23 +81,23 @@ public class FindStudyGroupsController implements Initializable {
 
         //scan in data from the courseinfo.txt file
         try {
-            scn1 = new Scanner(new File("courseinfo.txt"));
+            scanner1 = new Scanner(new File("courseinfo.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
         //these lines will skip the beginning 2 lines that start with #
-        scn1.nextLine();
-        scn1.nextLine();
+        scanner1.nextLine();
+        scanner1.nextLine();
 
         //while theres a line to scan within the file
-        while (scn1.hasNextLine()) {
+        while (scanner1.hasNextLine()) {
             //add the course type, course number, and section number onto to list
-            list.add(new SearchTabModel(scn1.next(), scn1.next(), scn1.next()));
-            scn1.nextLine();
+            list.add(new SearchTabModel(scanner1.next(), scanner1.next(), scanner1.next()));
+            scanner1.nextLine();
         }
         //close the scanner
-        scn1.close();
+        scanner1.close();
 
 
     }
@@ -113,10 +112,10 @@ public class FindStudyGroupsController implements Initializable {
 
         //narrows down the tableview to show what the user inputs in the coursetype textfield
         typeTF.textProperty().addListener((observable, oldValue, newValue) -> {
-            filter.setPredicate((Predicate<? super SearchTabModel>) (SearchTabModel std) -> {
+            filter.setPredicate((Predicate<? super SearchTabModel>) (SearchTabModel searchTabObj) -> {
                 if (newValue.isEmpty() || newValue == null) {
                     return true;
-                } else if (std.getCT().contains(newValue)) {
+                } else if (searchTabObj.getCT().contains(newValue)) {
                     return true;
 
                 }
@@ -126,7 +125,7 @@ public class FindStudyGroupsController implements Initializable {
             });
 
         });
-
+        //display the new sortedList corresponding to user input
         SortedList<SearchTabModel> sort = new SortedList<SearchTabModel>(filter);
         sort.comparatorProperty().bind(tbl.comparatorProperty());
         tbl.setItems(sort);
@@ -144,10 +143,10 @@ public class FindStudyGroupsController implements Initializable {
 
         //narrows down the tableview to show what the user inputs in the course number textfield
         numberTF.textProperty().addListener((observable, oldValue, newValue) -> {
-            filter.setPredicate((Predicate<? super SearchTabModel>) (SearchTabModel std) -> {
+            filter.setPredicate((Predicate<? super SearchTabModel>) (SearchTabModel searchTabObj) -> {
                 if (newValue.isEmpty() || newValue == null) {
                     return true;
-                } else if (std.getCN().contains(newValue)) {
+                } else if (searchTabObj.getCN().contains(newValue)) {
                     return true;
 
                 }
@@ -157,7 +156,7 @@ public class FindStudyGroupsController implements Initializable {
             });
 
         });
-
+      //display the new sortedList corresponding to user input
         SortedList<SearchTabModel> sort = new SortedList<SearchTabModel>(filter);
         sort.comparatorProperty().bind(tbl.comparatorProperty());
         tbl.setItems(sort);
@@ -175,10 +174,10 @@ public class FindStudyGroupsController implements Initializable {
 
         //narrows down the tableview to show what the user inputs in the section number textfield
         snumberTF.textProperty().addListener((observable, oldValue, newValue) -> {
-            filter.setPredicate((Predicate<? super SearchTabModel>) (SearchTabModel std) -> {
+            filter.setPredicate((Predicate<? super SearchTabModel>) (SearchTabModel searchTabObj) -> {
                 if (newValue.isEmpty() || newValue == null) {
                     return true;
-                } else if (std.getSN().contains(newValue)) {
+                } else if (searchTabObj.getSN().contains(newValue)) {
                     return true;
 
                 }
@@ -188,7 +187,7 @@ public class FindStudyGroupsController implements Initializable {
             });
 
         });
-
+      //display the new sortedList corresponding to user input
         SortedList<SearchTabModel> sort = new SortedList<SearchTabModel>(filter);
         sort.comparatorProperty().bind(tbl.comparatorProperty());
         tbl.setItems(sort);
@@ -203,36 +202,41 @@ public class FindStudyGroupsController implements Initializable {
      */
     @FXML
     private void handleSGInfo(MouseEvent event) throws IOException { //when the user double clicks on the table row
-
-        String strCT, strCN, strSN, str1, str2, str3;
+    	//the string form of the course information the user clicks on
+        String strCourseType, strCourseNumber, strSectionNumber;
+        //the string form of the course information stored within the courseinfo.txt file
+        String scanCourseType, scanCourseNumber, scanSectionNumber;
+        
+        //if the user double clicks on a course
         if (event.getClickCount() == 2) {
-            //get the CT, CN, and SN that the user clicked on
-            strCT = col_CourseType.getCellData(tbl.getSelectionModel().getSelectedItem());
-            strCN = col_CourseNumber.getCellData(tbl.getSelectionModel().getSelectedItem());
-            strSN = col_SectionNumber.getCellData(tbl.getSelectionModel().getSelectedItem());
+            //get the CourseType, CourseNumber, and SectionNumber that the user clicked on
+            strCourseType = col_CourseType.getCellData(tbl.getSelectionModel().getSelectedItem());
+            strCourseNumber = col_CourseNumber.getCellData(tbl.getSelectionModel().getSelectedItem());
+            strSectionNumber = col_SectionNumber.getCellData(tbl.getSelectionModel().getSelectedItem());
 
             //display the study group information from the file
             try {
-                scn2 = new Scanner(new File("courseinfo.txt"));
+                scanner2 = new Scanner(new File("courseinfo.txt"));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
 
             //these lines will skip the beginning 2 lines that start with #
-            scn2.nextLine();
-            scn2.nextLine();
+            scanner2.nextLine();
+            scanner2.nextLine();
 
-            while (scn2.hasNextLine()) { //while there's a line to scan within the file
-                str1 = scn2.next(); //get the CT
-                str2 = scn2.next(); //get the CN
-                str3 = scn2.next(); //get the SN
+            while (scanner2.hasNextLine()) { //while there's a line to scan within the file
+                scanCourseType = scanner2.next(); //get the CourseType from file
+                scanCourseNumber = scanner2.next(); //get the CourseNumber from file
+                scanSectionNumber = scanner2.next(); //get the SectionNumber from file
+                
                 //search through the file to find the clicked row's study group information
-                if (str1.equals(strCT) && str2.equals(strCN) && str3.equals(strSN)) {
+                if (scanCourseType.equals(strCourseType) && scanCourseNumber.equals(strCourseNumber) && scanSectionNumber.equals(strSectionNumber)) {
 
-                    //if there's a study group
-                    if (!scn2.hasNext("CS") && !scn2.hasNext("MAT")) {
+                    //if there's a study group, so if our hasNext() is study group information and not a coursetype of CS or MAT
+                    if (!scanner2.hasNext("CS") && !scanner2.hasNext("MAT")) {
                         //set the text of the results text area to the study group information
-                        resultsTF.setText("The meet days are " + scn2.next() + "\nThe meet time is " + scn2.next() + "\nThe Location on Campus is " + scn2.next() + "\nTo join the group or for more info, please contact the group leader at " + scn2.next());
+                        resultsTF.setText("The meet days are " + scanner2.next() + "\nThe meet time is " + scanner2.next() + "\nThe Location on Campus is " + scanner2.next() + "\nTo join the group or for more info, please contact the group leader at " + scanner2.next());
                         break;
                     }
                     //if there's is not a study group
@@ -242,14 +246,15 @@ public class FindStudyGroupsController implements Initializable {
                         break;
                     }
                 }
-                if (scn2.hasNextLine()) {
-                    scn2.nextLine();
+                //if there is a new line to scan, scan it in
+                if (scanner2.hasNextLine()) {
+                    scanner2.nextLine();
                 }
             }
 
 
             //close file
-            scn2.close();
+            scanner2.close();
             //we don't want the user to type in the text area
             resultsTF.setEditable(false);
         }
@@ -296,11 +301,3 @@ public class FindStudyGroupsController implements Initializable {
         }
     }
 }
-
-	
-	
-	
-	
-	
-	
-
