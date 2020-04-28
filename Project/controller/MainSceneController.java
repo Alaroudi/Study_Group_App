@@ -36,13 +36,13 @@ public class MainSceneController extends LoginController implements Initializabl
     @FXML
     private JFXButton createStudyGroupButton;
     @FXML
-    private JFXButton findStudyMaterialsButton;
-    @FXML
     private JFXButton settingsButtons;
     @FXML
     private Button logoutButton;
     @FXML
     private BorderPane mainPane;
+    @FXML
+    private JFXButton myStudyGroupsButton;
 
     /**
      * Initializes the controller class.
@@ -77,7 +77,7 @@ public class MainSceneController extends LoginController implements Initializabl
 
 
         }
-        else if (event.getSource() == findStudyMaterialsButton){
+        else if (event.getSource() == myStudyGroupsButton){
             
             
             
