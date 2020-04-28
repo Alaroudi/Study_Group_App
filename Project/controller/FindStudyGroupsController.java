@@ -1,40 +1,40 @@
 package Project.controller;
 
-import javafx.beans.property.SimpleStringProperty;
-
+import Project.model.SearchTable;
+import com.jfoenix.controls.JFXButton;
 import java.io.File;
-
-import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.function.Predicate;
-
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.property.DoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 
-/**
- * FindStudyGroupsController class controls the FindStudyGroups.fxml scene
- *
- * @autor Kassie Garcia
- */
+
 public class FindStudyGroupsController implements Initializable {
+   
     @FXML
-    private JFXTextArea resultsTF;
-
+    private TextArea resultsTA;
     @FXML
     private JFXTextField typeTF;
 
@@ -45,24 +45,31 @@ public class FindStudyGroupsController implements Initializable {
     private JFXTextField snumberTF;
 
     @FXML
-    private TableView<SearchTabModel> tbl;
+    private TableView<SearchTable> tbl;
 
     @FXML
-    private TableColumn<SearchTabModel, String> col_CourseType;
+    private TableColumn<SearchTable, String> col_CourseType;
 
     @FXML
-    private TableColumn<SearchTabModel, String> col_CourseNumber;
+    private TableColumn<SearchTable, String> col_CourseNumber;
 
     @FXML
-    private TableColumn<SearchTabModel, String> col_SectionNumber;
-
-    private Scanner scanner1;
-    private Scanner scanner2;
+    private TableColumn<SearchTable, String> col_SectionNumber;
 
     //the data that will be displayed in tableview
-    ObservableList<SearchTabModel> list = FXCollections.observableArrayList();
+    ObservableList<SearchTable> list = FXCollections.observableArrayList();
     //for when we are searching through the tableview
-    FilteredList<SearchTabModel> filter = new FilteredList<SearchTabModel>(list, e -> true);
+    FilteredList<SearchTable> filter = new FilteredList<SearchTable>(list, e -> true);
+    @FXML
+    private SplitPane splitPane;
+    @FXML
+    private JFXButton joinButton;
+    
+    private Scanner scanner1;
+    private Scanner scanner2;
+    
+    private static String  CourseInfo, meetDay, meetTime, meetLocation, meetContact,  availableSeats;
+    
 
     /**
      * initialize(URL arg0, ResourceBundle arg1) initializes the FindStudyGroups.fxml scene
@@ -81,7 +88,7 @@ public class FindStudyGroupsController implements Initializable {
 
         //scan in data from the courseinfo.txt file
         try {
-            scanner1 = new Scanner(new File("courseinfo.txt"));
+            scanner1 = new Scanner(new File("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\courseinfo.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -93,7 +100,7 @@ public class FindStudyGroupsController implements Initializable {
         //while theres a line to scan within the file
         while (scanner1.hasNextLine()) {
             //add the course type, course number, and section number onto to list
-            list.add(new SearchTabModel(scanner1.next(), scanner1.next(), scanner1.next()));
+            list.add(new SearchTable(scanner1.next(), scanner1.next(), scanner1.next()));
             scanner1.nextLine();
         }
         //close the scanner
@@ -112,7 +119,7 @@ public class FindStudyGroupsController implements Initializable {
 
         //narrows down the tableview to show what the user inputs in the coursetype textfield
         typeTF.textProperty().addListener((observable, oldValue, newValue) -> {
-            filter.setPredicate((Predicate<? super SearchTabModel>) (SearchTabModel searchTabObj) -> {
+            filter.setPredicate((Predicate<? super SearchTable>) (SearchTable searchTabObj) -> {
                 if (newValue.isEmpty() || newValue == null) {
                     return true;
                 } else if (searchTabObj.getCT().contains(newValue)) {
@@ -126,7 +133,7 @@ public class FindStudyGroupsController implements Initializable {
 
         });
         //display the new sortedList corresponding to user input
-        SortedList<SearchTabModel> sort = new SortedList<SearchTabModel>(filter);
+        SortedList<SearchTable> sort = new SortedList<SearchTable>(filter);
         sort.comparatorProperty().bind(tbl.comparatorProperty());
         tbl.setItems(sort);
 
@@ -143,7 +150,7 @@ public class FindStudyGroupsController implements Initializable {
 
         //narrows down the tableview to show what the user inputs in the course number textfield
         numberTF.textProperty().addListener((observable, oldValue, newValue) -> {
-            filter.setPredicate((Predicate<? super SearchTabModel>) (SearchTabModel searchTabObj) -> {
+            filter.setPredicate((Predicate<? super SearchTable>) (SearchTable searchTabObj) -> {
                 if (newValue.isEmpty() || newValue == null) {
                     return true;
                 } else if (searchTabObj.getCN().contains(newValue)) {
@@ -157,7 +164,7 @@ public class FindStudyGroupsController implements Initializable {
 
         });
       //display the new sortedList corresponding to user input
-        SortedList<SearchTabModel> sort = new SortedList<SearchTabModel>(filter);
+        SortedList<SearchTable> sort = new SortedList<SearchTable>(filter);
         sort.comparatorProperty().bind(tbl.comparatorProperty());
         tbl.setItems(sort);
 
@@ -174,7 +181,7 @@ public class FindStudyGroupsController implements Initializable {
 
         //narrows down the tableview to show what the user inputs in the section number textfield
         snumberTF.textProperty().addListener((observable, oldValue, newValue) -> {
-            filter.setPredicate((Predicate<? super SearchTabModel>) (SearchTabModel searchTabObj) -> {
+            filter.setPredicate((Predicate<? super SearchTable>) (SearchTable searchTabObj) -> {
                 if (newValue.isEmpty() || newValue == null) {
                     return true;
                 } else if (searchTabObj.getSN().contains(newValue)) {
@@ -188,7 +195,7 @@ public class FindStudyGroupsController implements Initializable {
 
         });
       //display the new sortedList corresponding to user input
-        SortedList<SearchTabModel> sort = new SortedList<SearchTabModel>(filter);
+        SortedList<SearchTable> sort = new SortedList<SearchTable>(filter);
         sort.comparatorProperty().bind(tbl.comparatorProperty());
         tbl.setItems(sort);
 
@@ -216,7 +223,7 @@ public class FindStudyGroupsController implements Initializable {
 
             //display the study group information from the file
             try {
-                scanner2 = new Scanner(new File("courseinfo.txt"));
+                scanner2 = new Scanner(new File("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\courseinfo.txt"));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -230,74 +237,62 @@ public class FindStudyGroupsController implements Initializable {
                 scanCourseNumber = scanner2.next(); //get the CourseNumber from file
                 scanSectionNumber = scanner2.next(); //get the SectionNumber from file
                 
+                CourseInfo = scanCourseType.trim()+ " " + scanCourseNumber.trim() + " " + scanSectionNumber.trim();
+                
                 //search through the file to find the clicked row's study group information
                 if (scanCourseType.equals(strCourseType) && scanCourseNumber.equals(strCourseNumber) && scanSectionNumber.equals(strSectionNumber)) {
 
                     //if there's a study group, so if our hasNext() is study group information and not a coursetype of CS or MAT
                     if (!scanner2.hasNext("CS") && !scanner2.hasNext("MAT")) {
                         //set the text of the results text area to the study group information
-                        resultsTF.setText("The meet days are " + scanner2.next() + "\nThe meet time is " + scanner2.next() + "\nThe Location on Campus is " + scanner2.next() + "\nTo join the group or for more info, please contact the group leader at " + scanner2.next());
+                        meetDay = scanner2.next().trim(); 
+                        meetTime = scanner2.next().trim(); 
+                        meetLocation = scanner2.next().trim(); 
+                        meetContact = scanner2.next().trim();  
+                        availableSeats= scanner2.next().trim();
+                        resultsTA.setText("The meet days are " + meetDay + "\nThe meet time is " + meetTime + "\nThe Location on Campus is " + meetLocation + "\nFor more info, please contact the group leader at " + meetContact + "\nAvailable Seats: " + availableSeats);
+                        
+                       
+                        joinButton.setVisible(true);
+
                         break;
                     }
                     //if there's is not a study group
                     else {
                         //set the text of the results text area to an error message
-                        resultsTF.setText("No study group was found.\nTo create a study group for this course\nclick on the create study group tab");
+                        resultsTA.setText("No study group was found.\nTo create a study group for this course\nclick on the create study group tab");
+                        
+                        joinButton.setVisible(false);
                         break;
                     }
                 }
                 //if there is a new line to scan, scan it in
                 if (scanner2.hasNextLine()) {
-                    scanner2.nextLine();
+                    scanner2.nextLine();                   
                 }
             }
 
 
             //close file
             scanner2.close();
-            //we don't want the user to type in the text area
-            resultsTF.setEditable(false);
+ 
+            //Transition to Study Group Results
+            DoubleProperty dprop = splitPane.getDividers().get(0).positionProperty();
+            KeyValue keyValue = new KeyValue(dprop, 0.65);
+            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), keyValue));
+            timeline.play();
         }
     }
 
-    /**
-     * SearchTabModel stores course information
-     */
-    public class SearchTabModel {
-        //A class that stores the course type , course number, and section number.
-        //Makes it easier to put all the info into a Collection
-        SimpleStringProperty coursetype;
-        SimpleStringProperty coursenumber;
-        SimpleStringProperty sectionnumber;
-
-        public SearchTabModel(String coursetype, String coursenumber, String sectionnumber) {
-            this.coursetype = new SimpleStringProperty(coursetype);
-            this.coursenumber = new SimpleStringProperty(coursenumber);
-            this.sectionnumber = new SimpleStringProperty(sectionnumber);
-        }
-
-        public String getCT() {
-            return coursetype.get();
-        }
-
-        public String getCN() {
-            return coursenumber.get();
-        }
-
-        public String getSN() {
-            return sectionnumber.get();
-        }
-
-        public final SimpleStringProperty CTProperty() {
-            return coursetype;
-        }
-
-        public final SimpleStringProperty CNProperty() {
-            return coursenumber;
-        }
-
-        public final SimpleStringProperty SNProperty() {
-            return sectionnumber;
-        }
+    @FXML
+    private void handelJoinButton(ActionEvent event) {
+        //To Do
+        
+        
+        
+        
     }
+
+
+    
 }
