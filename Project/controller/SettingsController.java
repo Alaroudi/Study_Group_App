@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.scene.control.Label;
 
-public class SettingsController extends MainSceneController implements Initializable {
+public class SettingsController extends LoginController implements Initializable {
     @FXML
     private JFXTextField usernameField;
 
