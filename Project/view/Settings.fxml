@@ -1,29 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.controller.SettingsController">
+<Pane prefHeight="657.0" prefWidth="600.0" styleClass="picker-settings" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.controller.SettingsController">
    <children>
-      <Text layoutX="152.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update your settings below. Changes will take effect next time you log in." textAlignment="CENTER" wrappingWidth="307.0" />
-      <JFXButton buttonType="RAISED" contentDisplay="RIGHT" layoutX="241.0" layoutY="573.0" onAction="#saveSettings" prefHeight="30.0" prefWidth="129.0" style="-fx-background-color: #208fe8; -fx-background-radius: 10;" text="Save Changes" textFill="WHITE">
-         <graphic>
-            <FontAwesomeIcon fill="WHITE" iconName="SAVE" size="14" text="" textAlignment="JUSTIFY" />
-         </graphic>
-      </JFXButton>
-      <JFXTextField fx:id="passwordField" labelFloat="true" layoutX="217.0" layoutY="464.0" prefHeight="27.0" prefWidth="176.0" />
-      <JFXTextField fx:id="usernameField" labelFloat="true" layoutX="217.0" layoutY="355.0" prefHeight="27.0" prefWidth="176.0" />
-      <JFXTextField fx:id="lastNameField" labelFloat="true" layoutX="217.0" layoutY="246.0" prefHeight="27.0" prefWidth="176.0" />
-      <JFXTextField fx:id="firstNameField" labelFloat="true" layoutX="217.0" layoutY="137.0" prefHeight="27.0" prefWidth="176.0" />
-      <Text fill="#002a5a" layoutX="250.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
+      <Text fill="#002a5a" layoutX="243.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
          <font>
             <Font size="32.0" />
          </font>
       </Text>
+      <VBox layoutX="122.0" layoutY="177.0" prefWidth="350.0">
+         <children>
+            <JFXTextField fx:id="firstNameField" alignment="CENTER" labelFloat="true" prefHeight="27.0" prefWidth="300.0" promptText="First Name">
+               <VBox.margin>
+                  <Insets bottom="45.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="lastNameField" alignment="CENTER" labelFloat="true" prefHeight="27.0" prefWidth="300.0" promptText="Last Name ">
+               <VBox.margin>
+                  <Insets bottom="45.0" />
+               </VBox.margin>
+            </JFXTextField>
+         </children>
+      </VBox>
+      <Text layoutX="159.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update your settings below. Changes will take effect next time you log in." textAlignment="CENTER" wrappingWidth="307.0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font></Text>
+      <JFXDatePicker fx:id="birthdateField" defaultColor="#4059a9" layoutX="119.0" layoutY="321.0" prefHeight="55.0" prefWidth="362.0" promptText="Date of Birth" styleClass="date-picker-settings">
+         <padding>
+            <Insets bottom="45.0" />
+         </padding>
+      </JFXDatePicker>
+      <VBox layoutX="122.0" layoutY="391.0" prefWidth="350.0">
+         <children>
+            <JFXTextField fx:id="usernameField" alignment="CENTER" labelFloat="true" prefHeight="27.0" prefWidth="300.0" promptText="Username">
+               <VBox.margin>
+                  <Insets bottom="45.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXPasswordField fx:id="passwordField" alignment="CENTER" promptText="Password" />
+         </children>
+      </VBox>
+      <JFXButton buttonType="RAISED" contentDisplay="RIGHT" layoutX="233.0" layoutY="533.0" onAction="#saveSettings" prefHeight="30.0" prefWidth="129.0" style="-fx-background-color: #208fe8; -fx-background-radius: 10;" text="Save Changes" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIcon fill="WHITE" iconName="SAVE" size="14" text="" textAlignment="JUSTIFY" />
+         </graphic>
+      </JFXButton>
+      <Label fx:id="changesConfirm" layoutX="199.0" layoutY="589.0" prefHeight="20.0" prefWidth="196.0" textFill="LIME">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
    </children>
-</AnchorPane>
+</Pane>
