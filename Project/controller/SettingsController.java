@@ -40,7 +40,14 @@ public class SettingsController extends LoginController implements Initializable
 
     @FXML
     void saveSettings(ActionEvent event) {
-       
+        if(firstNameField.getText().contentEquals("") &&
+                lastNameField.getText().contentEquals("") &&
+                birthdateField.getValue() == null &&
+                usernameField.getText().contentEquals("") &&
+                passwordField.getText().contentEquals("")) {
+            return;
+        }
+
         Scanner scan;
         String newFirstName = firstNameField.getText().trim();
         if(newFirstName.contentEquals("")) {
@@ -56,9 +63,9 @@ public class SettingsController extends LoginController implements Initializable
             LocalDate date = birthdateField.getValue();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
             newBirthDate = formatter.format(date);
-        } 
+        }
         else{
-            
+
              newBirthDate = user.getBirthDate();
         }
         String newUsername = usernameField.getText().trim();
@@ -69,7 +76,7 @@ public class SettingsController extends LoginController implements Initializable
         if(newPassword.contentEquals("")) {
             newPassword = user.getPassword();
         }
-        
+
 
         try{
             File oldFile = new File("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\Users.txt");
