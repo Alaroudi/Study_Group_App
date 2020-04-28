@@ -6,32 +6,32 @@ package Project.model;
 import javafx.beans.property.SimpleStringProperty;
 
 public class SearchTable {
-    SimpleStringProperty coursetype;
-    SimpleStringProperty coursenumber; 
-    SimpleStringProperty sectionnumber;
+    SimpleStringProperty courseType;
+    SimpleStringProperty courseNumber; 
+    SimpleStringProperty sectionNumber;
 
-    public SearchTable(String coursetype, String coursenumber, String sectionnumber){
-            this.coursetype = new SimpleStringProperty(coursetype);
-            this.coursenumber = new SimpleStringProperty(coursenumber);
-            this.sectionnumber = new SimpleStringProperty(sectionnumber);
+    public SearchTable(String courseType, String courseNumber, String sectionNumber){
+            this.courseType = new SimpleStringProperty(courseType);
+            this.courseNumber = new SimpleStringProperty(courseNumber);
+            this.sectionNumber = new SimpleStringProperty(sectionNumber);
     }
     public String getCT(){
-            return coursetype.get();
+            return courseType.get();
     }
     public String getCN(){
-            return coursenumber.get();
+            return courseNumber.get();
     }
     public String getSN(){
-            return sectionnumber.get();
+            return sectionNumber.get();
     }
     public final SimpleStringProperty CTProperty(){
-            return coursetype;
+            return courseType;
     }
     public final SimpleStringProperty CNProperty(){
-            return coursenumber;
+            return courseNumber;
     }
     public final SimpleStringProperty SNProperty(){
-            return sectionnumber;
+            return sectionNumber;
     }
     
 }
