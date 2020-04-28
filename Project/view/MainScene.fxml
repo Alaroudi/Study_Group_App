@@ -43,7 +43,7 @@
                   <FontAwesomeIcon fill="WHITE" iconName="GROUP" size="12" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="findStudyMaterialsButton" alignment="BASELINE_LEFT" onAction="#handleButtons" prefHeight="75.0" prefWidth="300.0" text="  Find Study Materials" textFill="WHITE">
+            <JFXButton fx:id="myStudyGroupsButton" alignment="BASELINE_LEFT" onAction="#handleButtons" prefHeight="75.0" prefWidth="300.0" text="  My Study Groups" textFill="WHITE">
                <padding>
                   <Insets left="50.0" />
                </padding>
@@ -78,7 +78,7 @@
             </Button>
          </children>
       </Pane>
-      <BorderPane fx:id="mainPane" layoutX="300.0" layoutY="38.0" prefHeight="662.0" prefWidth="600.0">
+      <BorderPane fx:id="mainPane" layoutX="300.0" layoutY="38.0" prefHeight="660.0" prefWidth="600.0">
          <top>
             <Separator prefWidth="200.0" BorderPane.alignment="CENTER" />
          </top>
