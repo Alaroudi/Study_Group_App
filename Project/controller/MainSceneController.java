@@ -6,13 +6,11 @@
 package Project.controller;
 
 import com.jfoenix.controls.JFXButton;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,11 +19,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * MainSceneController class controls the MainScene.fxml scene
+ * FXML Controller class
  *
  * @author alaro
  */
@@ -50,57 +49,51 @@ public class MainSceneController extends LoginController implements Initializabl
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
         // TODO
 
         username_mainscene.setText(user.getFirstname() + " " + user.getLasttname());
 
         try {
-            AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/Project/view/FindStudyGroups.fxml"));
-            mainPane.setCenter(root);
+            SplitPane root = (SplitPane)FXMLLoader.load(getClass().getResource("/Project/view/FindStudyGroups.fxml"));
+            mainPane.setCenter(root);   
         } catch (IOException ex) {
-            Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
-
-
+   
+        
     }
 
-    /**
-     * handleButtons(ActionEvent event) handles scene changes
-     *
-     * @param event
-     * @throws IOException
-     */
     @FXML
     private void handleButtons(ActionEvent event) throws IOException {
-        if (event.getSource() == findStudyGroupButton) {
-
-            AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/Project/view/FindStudyGroups.fxml"));
+        if (event.getSource() ==  findStudyGroupButton){
+            
+            SplitPane root = (SplitPane)FXMLLoader.load(getClass().getResource("/Project/view/FindStudyGroups.fxml"));
+            mainPane.setCenter(root);   
+        }
+        else if (event.getSource() == createStudyGroupButton){
+            AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/Project/view/CreateGroupView.fxml"));
             mainPane.setCenter(root);
-        } else if (event.getSource() == createStudyGroupButton) {
-            AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/Project/view/CreateGroupView.fxml"));
-            mainPane.setCenter(root);
-
-        } else if (event.getSource() == findStudyMaterialsButton) {
 
 
-        } else if (event.getSource() == settingsButtons) {
-            AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/Project/view/Settings.fxml"));
+        }
+        else if (event.getSource() == findStudyMaterialsButton){
+            
+            
+            
+        }
+        else if(event.getSource() == settingsButtons){
+            Pane root = (Pane)FXMLLoader.load(getClass().getResource("/Project/view/Settings.fxml"));
             mainPane.setCenter(root);
         }
-
+  
     }
 
-    /**
-     * Logout(ActionEvent event) logs user out when they click on 'Logout' button
-     *
-     * @param event
-     */
     @FXML
     private void Logout(ActionEvent event) {
-        Stage stage = (Stage) logoutButton.getScene().getWindow();
+         Stage stage = (Stage) logoutButton.getScene().getWindow();
         stage.close();
     }
-
-
+    
+    
 }
