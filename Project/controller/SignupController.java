@@ -93,12 +93,15 @@ public class SignupController implements Initializable {
      */
     @FXML
     private void signup(ActionEvent event) {
-
+        if(firstname.getText() == null || lastname.getText() == null ||
+                birthDate.getValue() == null || username_email.getText() == null ||
+                password.getText() == null || password_conf.getText() == null) {
+            return;
+        }
 
         try {
-
-
-            FileWriter fstream = new FileWriter("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\Users.txt", true);
+             FileWriter fstream = new FileWriter("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\Users.txt", true);
+            // FileWriter fstream = new FileWriter("Project/model/Users.txt", true);
             BufferedWriter print = new BufferedWriter(fstream);
             LocalDate date = birthDate.getValue();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
