@@ -15,7 +15,12 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.scene.control.Label;
 
-public class SettingsController extends LoginController implements Initializable {
+/**
+ * SettingsController class controls the Settings.fxml scene
+ *
+ * @autor Alana Quinones Garcia - ded687
+ */
+public class SettingsController extends LoginController {
     @FXML
     private JFXTextField usernameField;
 
@@ -33,11 +38,12 @@ public class SettingsController extends LoginController implements Initializable
     @FXML
     private Label changesConfirm;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-      
-    }
-
+    /**
+     * saveSettings(ActionEvent event) changes a user's settings when they click on 'save changes' button
+     *
+     * @param event
+     * @throws FileNotFoundException and IOException
+     */
     @FXML
     void saveSettings(ActionEvent event) {
         if(firstNameField.getText().contentEquals("") &&
