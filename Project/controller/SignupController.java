@@ -59,6 +59,8 @@ public class SignupController implements Initializable {
     private JFXDatePicker birthDate;
     @FXML
     private AnchorPane rootAnchorPane;
+    @FXML
+    private VBox requiredFields;
 
 
     /**
@@ -96,8 +98,11 @@ public class SignupController implements Initializable {
         if(firstname.getText() == null || lastname.getText() == null ||
                 birthDate.getValue() == null || username_email.getText() == null ||
                 password.getText() == null || password_conf.getText() == null) {
+            requiredFields.setVisible(true);
             return;
         }
+        
+        requiredFields.setVisible(false);
 
         try {
              FileWriter fstream = new FileWriter("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\Users.txt", true);
