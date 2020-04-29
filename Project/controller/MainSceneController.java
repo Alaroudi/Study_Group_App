@@ -24,7 +24,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * MainSceneController class controls the MainScene.fxml scene
  *
  * @author alaro
  */
@@ -63,7 +63,13 @@ public class MainSceneController extends LoginController implements Initializabl
    
         
     }
-
+    
+     /**
+     * handleButtons(ActionEvent event) handles scene changes
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void handleButtons(ActionEvent event) throws IOException {
         if (event.getSource() ==  findStudyGroupButton){
@@ -88,7 +94,12 @@ public class MainSceneController extends LoginController implements Initializabl
         }
   
     }
-
+    
+    /**
+     * Logout(ActionEvent event) logs user out when they click on 'Logout' button
+     *
+     * @param event
+     */
     @FXML
     private void Logout(ActionEvent event) {
          Stage stage = (Stage) logoutButton.getScene().getWindow();

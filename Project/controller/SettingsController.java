@@ -15,7 +15,12 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.scene.control.Label;
 
-public class SettingsController extends MainSceneController implements Initializable {
+/**
+ * SettingsController class controls the Settings.fxml scene
+ *
+ * @autor Alana Quinones Garcia - ded687
+ */
+public class SettingsController extends LoginController {
     @FXML
     private JFXTextField usernameField;
 
@@ -33,14 +38,22 @@ public class SettingsController extends MainSceneController implements Initializ
     @FXML
     private Label changesConfirm;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-      
-    }
-
+    /**
+     * saveSettings(ActionEvent event) changes a user's settings when they click on 'save changes' button
+     *
+     * @param event
+     * @throws FileNotFoundException and IOException
+     */
     @FXML
     void saveSettings(ActionEvent event) {
-       
+        if(firstNameField.getText().contentEquals("") &&
+                lastNameField.getText().contentEquals("") &&
+                birthdateField.getValue() == null &&
+                usernameField.getText().contentEquals("") &&
+                passwordField.getText().contentEquals("")) {
+            return;
+        }
+
         Scanner scan;
         String newFirstName = firstNameField.getText().trim();
         if(newFirstName.contentEquals("")) {
@@ -56,9 +69,9 @@ public class SettingsController extends MainSceneController implements Initializ
             LocalDate date = birthdateField.getValue();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
             newBirthDate = formatter.format(date);
-        } 
+        }
         else{
-            
+
              newBirthDate = user.getBirthDate();
         }
         String newUsername = usernameField.getText().trim();
@@ -69,7 +82,7 @@ public class SettingsController extends MainSceneController implements Initializ
         if(newPassword.contentEquals("")) {
             newPassword = user.getPassword();
         }
-        
+
 
         try{
             File oldFile = new File("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\Users.txt");

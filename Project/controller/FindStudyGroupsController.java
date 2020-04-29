@@ -115,7 +115,7 @@ public class FindStudyGroupsController implements Initializable {
      * @param event
      */
     @FXML
-    private void search(KeyEvent event) { //when user searches by by course type
+    private void courseTypeSearch(KeyEvent event) { //when user searches by by course type
 
         //narrows down the tableview to show what the user inputs in the coursetype textfield
         typeTF.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -146,7 +146,7 @@ public class FindStudyGroupsController implements Initializable {
      * @param event
      */
     @FXML
-    private void search2(KeyEvent event) {
+    private void courseNumberSearch(KeyEvent event) {
 
         //narrows down the tableview to show what the user inputs in the course number textfield
         numberTF.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -177,7 +177,7 @@ public class FindStudyGroupsController implements Initializable {
      * @param event
      */
     @FXML
-    private void search3(KeyEvent event) {
+    private void courseSectionSearch(KeyEvent event) {
 
         //narrows down the tableview to show what the user inputs in the section number textfield
         snumberTF.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -292,7 +292,6 @@ public class FindStudyGroupsController implements Initializable {
         
         
     }
-
 
     
 }
