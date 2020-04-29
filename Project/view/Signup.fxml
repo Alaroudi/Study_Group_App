@@ -33,7 +33,7 @@
             </JFXTextField>
          </children>
       </VBox>
-      <JFXDatePicker fx:id="birthDate" defaultColor="#003054" layoutX="74.0" layoutY="295.0" prefHeight="55.0" prefWidth="385.0" promptText="Date of Birth">
+      <JFXDatePicker fx:id="birthDate" defaultColor="#003054" layoutX="74.0" layoutY="295.0" prefHeight="55.0" prefWidth="385.0" promptText="Date of Birth" styleClass="date-picker-signup">
          <padding>
             <Insets bottom="30.0" />
          </padding>
@@ -73,5 +73,57 @@
          </font>
       </Label>
       <FontAwesomeIcon fx:id="closeButton" fill="WHITE" iconName="CLOSE" layoutX="450.0" layoutY="46.0" onMouseClicked="#Close" size="2em" />
+      <VBox fx:id="requiredFields" layoutX="55.0" layoutY="186.0" prefHeight="306.0" prefWidth="13.0" visible="false">
+         <children>
+            <Label prefHeight="6.0" prefWidth="13.0" text="*" textFill="RED">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="6.0" prefWidth="13.0" text="*" textFill="RED">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label prefHeight="6.0" prefWidth="13.0" text="*" textFill="RED">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="6.0" prefWidth="13.0" text="*" textFill="RED">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="6.0" prefWidth="13.0" text="*" textFill="RED">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="6.0" prefWidth="13.0" text="*" textFill="RED">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
