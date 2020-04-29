@@ -9,12 +9,12 @@
 
 <AnchorPane fx:id="rootAnchor" prefHeight="558.0" prefWidth="528.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.controller.MyStudyGroupsController">
    <children>
-      <Text fill="#002a5a" layoutX="180.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Study Groups">
+      <Text fill="#002a5a" layoutX="172.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Study Groups">
          <font>
-            <Font size="22.0" />
+            <Font size="24.0" />
          </font>
       </Text>
-      <TableView fx:id="tbl" layoutX="7.0" layoutY="53.0" prefHeight="266.0" prefWidth="513.0">
+      <TableView fx:id="tbl" layoutX="7.0" layoutY="53.0" prefHeight="301.0" prefWidth="513.0">
         <columns>
           <TableColumn id="tbl" fx:id="courseInfo" editable="false" prefWidth="75.0" text="Course" />
           <TableColumn id="tbl" fx:id="day" editable="false" prefWidth="89.28570556640625" text="Meet Day" />
@@ -24,6 +24,6 @@
             <TableColumn id="tbl" fx:id="seats" editable="false" prefWidth="97.142822265625" text="Seats Available" />
         </columns>
       </TableView>
-      <FontAwesomeIcon fx:id="back" layoutX="430.0" layoutY="531.0" wrappingWidth="82.857177734375" />
+      <FontAwesomeIcon fx:id="back" iconName="CLOSE" layoutX="495.0" layoutY="37.0" onMouseClicked="#goBack" size="2em" wrappingWidth="18.28570556640625" />
    </children>
 </AnchorPane>
