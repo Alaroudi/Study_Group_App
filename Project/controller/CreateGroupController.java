@@ -108,7 +108,7 @@ public class CreateGroupController implements Initializable {
             //exit the method
             return;
         }
-        //if the user input for meeting location isnt an UTSA Building acronym
+        //if the user input for meeting location is empty
         if (meetLocation.equals("")) {
 
             //print error message to screen
@@ -117,8 +117,7 @@ public class CreateGroupController implements Initializable {
             //exit the method
             return;
         }
-        //the input here is less restricted, basically anything with no spaces and an @ or numbers
-        // as contact info can be an email or a phone number
+        //is the input is empty
         if (meetContact.equals("")) {
             //print error message to screen
             errorLabel.setText("Invalid Contact Information Format. Try again!");
