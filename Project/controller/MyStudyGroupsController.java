@@ -79,44 +79,19 @@ public class MyStudyGroupsController extends LoginController implements Initiali
 	        tbl.setItems(list);
 	        
 
-	        //scan in data from the courseinfo.txt file
+	        //scan in data from the groupinfo.txt file
 	        try {
-	            mainScanner = new Scanner(new File("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\courseinfo.txt"));
+	            mainScanner = new Scanner(new File("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\groupinfo.txt"));
 	        } catch (FileNotFoundException e) {
 	            e.printStackTrace();
 	        }
 
-	        //these lines will skip the beginning 2 lines that start with #
-	        mainScanner.nextLine();
-	        mainScanner.nextLine();
 
 	        //while theres a line to scan within the file
 	        while (mainScanner.hasNextLine()) 
 	        {
-	        	  String line = mainScanner.nextLine();
-
-	        	  lineScanner = new Scanner(line);
-	        	  //while there are still tokens within the line
-	        	  while (lineScanner.hasNext()) 
-	        	  {
-	        	    //add course info (type, number, section)
-	        		list.add(lineScanner.next());
-	        	    list.add(lineScanner.next());
-	        	    list.add(lineScanner.next());
-	        	    
-	        	    //if there is something after the course info, that means there is a study group
-	        	    //retrieve the study group info
-	        	    if(lineScanner.hasNext()) 
-	        	    {
-		        	    list.add(lineScanner.next());
-	        	    	list.add(lineScanner.next());
-		        	    list.add(lineScanner.next());
-		        	    list.add(lineScanner.next());
-		        	    list.add(lineScanner.next());
-	        	    }
-	        	  }
-	        	  lineScanner.close();
-	        	}
+	        	list.add(mainScanner.next());  
+	        }
 	     
 	            mainScanner.close();
 	     }

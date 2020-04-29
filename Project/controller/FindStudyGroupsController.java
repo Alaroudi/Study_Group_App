@@ -2,9 +2,13 @@ package Project.controller;
 
 import Project.model.SearchTable;
 import com.jfoenix.controls.JFXButton;
+
+import java.io.BufferedReader;
 import java.io.File;
 import com.jfoenix.controls.JFXTextField;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -283,11 +287,33 @@ public class FindStudyGroupsController implements Initializable {
             timeline.play();
         }
     }
-
+    
+    /*
+     * handleJoinButton takes the study group info given by the user and saves it in the groupinfo.txt file.
+    */		
     @FXML
-    private void handelJoinButton(ActionEvent event) {
-        //To Do
+    private void handleJoinButton(ActionEvent event) {
         
+    	try {
+    		//make the group into one string
+            StringBuilder group = new StringBuilder();
+            
+           	group.append(CourseInfo);
+           	group.append(meetDay);
+           	group.append(meetTime);
+           	group.append(meetContact);
+           	group.append(availableSeats);
+           	
+            // write the newly created group to the user's groupinfo file
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\groupinfo.txt");
+            fileOut.write(group.toString().getBytes());
+            
+            //close the file writer
+            fileOut.close();
+
+        } catch (Exception e) {
+            System.out.println("Problem reading file.");
+        }
         
         
         
