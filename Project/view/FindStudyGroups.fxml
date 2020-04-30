@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -46,7 +47,7 @@
                   <Font size="14.0" />
                </font>
             </TextArea>
-            <JFXButton fx:id="joinButton" buttonType="RAISED" contentDisplay="RIGHT" layoutX="255.0" layoutY="178.0" onAction="#handleJoinButton" prefHeight="30.0" prefWidth="88.0" style="-fx-background-color: #208fe8; -fx-background-radius: 10;" text="Join" textFill="WHITE" visible="false">
+            <JFXButton fx:id="joinButton" buttonType="RAISED" contentDisplay="RIGHT" layoutX="255.0" layoutY="178.0" onAction="#handelJoinButton" prefHeight="30.0" prefWidth="88.0" style="-fx-background-color: #208fe8; -fx-background-radius: 10;" text="Join" textFill="WHITE" visible="false">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" iconName="USER_PLUS" />
                </graphic>
@@ -54,6 +55,11 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </JFXButton>
+            <Label fx:id="joinConfirm" layoutX="189.0" layoutY="208.0" prefHeight="20.0" prefWidth="221.0" textFill="LIME">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
   </items>
 </SplitPane>
