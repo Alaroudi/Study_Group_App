@@ -299,16 +299,18 @@ public class FindStudyGroupsController implements Initializable {
     @FXML
     private void handleJoinButton(ActionEvent event) {
         
-    	try(FileWriter fw = new FileWriter("C:\\Users\\guaco\\Downloads\\Study_Group_App-master\\Study_Group_App\\Project\\model\\groupinfo.txt", true);
-    		    BufferedWriter bw = new BufferedWriter(fw);
-    		    PrintWriter out = new PrintWriter(bw))
+    try(
+         FileWriter fw = new FileWriter("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\groupinfo.txt", true);
+    		BufferedWriter bw = new BufferedWriter(fw);
+    		PrintWriter out = new PrintWriter(bw))
     		{
     		    out.printf("%s %s %s %s %s %s %s\n", LoginController.user.getUsername(), CourseInfo, meetDay, meetTime, meetLocation, meetContact,  availableSeats);
     		} 
-    			catch (IOException e) {
+                    catch (IOException e) {
     		    e.printStackTrace();
     		}
     	
+      joinConfirm.setText("You Secssussfully joined the group");
         
         
     }
