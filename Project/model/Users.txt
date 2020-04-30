@@ -1,3 +1,4 @@
 Abdelrhman,Alaroudi,12/20/1997,szx090,1722011
 Ahmed,Algomati,03/04/2020,alaroudi.h,1234
 Alana,Quinones Garcia,05/11/2000,ded687,1234
+Simon,Rendon,05/06/2020,srendon,1234

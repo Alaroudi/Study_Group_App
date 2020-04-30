@@ -26,6 +26,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -105,7 +106,7 @@ public class SignupController implements Initializable {
         requiredFields.setVisible(false);
 
         try {
-             FileWriter fstream = new FileWriter("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\Users.txt", true);
+             FileWriter fstream = new FileWriter("C:\\Users\\guaco\\Downloads\\Study_Group_App-master\\Study_Group_App\\Project\\model\\Users.txt", true);
             // FileWriter fstream = new FileWriter("Project/model/Users.txt", true);
             BufferedWriter print = new BufferedWriter(fstream);
             LocalDate date = birthDate.getValue();

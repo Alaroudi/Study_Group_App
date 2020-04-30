@@ -46,7 +46,7 @@
                   <Font size="14.0" />
                </font>
             </TextArea>
-            <JFXButton fx:id="joinButton" buttonType="RAISED" contentDisplay="RIGHT" layoutX="255.0" layoutY="178.0" onAction="#handelJoinButton" prefHeight="30.0" prefWidth="88.0" style="-fx-background-color: #208fe8; -fx-background-radius: 10;" text="Join" textFill="WHITE" visible="false">
+            <JFXButton fx:id="joinButton" buttonType="RAISED" contentDisplay="RIGHT" layoutX="255.0" layoutY="178.0" onAction="#handleJoinButton" prefHeight="30.0" prefWidth="88.0" style="-fx-background-color: #208fe8; -fx-background-radius: 10;" text="Join" textFill="WHITE" visible="false">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" iconName="USER_PLUS" />
                </graphic>

@@ -1,15 +1,20 @@
 package Project.controller;
 
 import Project.model.SearchTable;
+import Project.model.UserInfo;
+
 import com.jfoenix.controls.JFXButton;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import com.jfoenix.controls.JFXTextField;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -92,7 +97,7 @@ public class FindStudyGroupsController implements Initializable {
 
         //scan in data from the courseinfo.txt file
         try {
-            scanner1 = new Scanner(new File("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\courseinfo.txt"));
+            scanner1 = new Scanner(new File("C:\\Users\\guaco\\Downloads\\Study_Group_App-master\\Study_Group_App\\Project\\model\\courseinfo.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -227,7 +232,7 @@ public class FindStudyGroupsController implements Initializable {
 
             //display the study group information from the file
             try {
-                scanner2 = new Scanner(new File("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\courseinfo.txt"));
+                scanner2 = new Scanner(new File("C:\\Users\\guaco\\Downloads\\Study_Group_App-master\\Study_Group_App\\Project\\model\\courseinfo.txt"));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -241,7 +246,7 @@ public class FindStudyGroupsController implements Initializable {
                 scanCourseNumber = scanner2.next(); //get the CourseNumber from file
                 scanSectionNumber = scanner2.next(); //get the SectionNumber from file
                 
-                CourseInfo = scanCourseType.trim()+ " " + scanCourseNumber.trim() + " " + scanSectionNumber.trim();
+                CourseInfo = scanCourseType.trim() + " " + scanCourseNumber.trim() + " " + scanSectionNumber.trim();
                 
                 //search through the file to find the clicked row's study group information
                 if (scanCourseType.equals(strCourseType) && scanCourseNumber.equals(strCourseNumber) && scanSectionNumber.equals(strSectionNumber)) {
@@ -294,27 +299,16 @@ public class FindStudyGroupsController implements Initializable {
     @FXML
     private void handleJoinButton(ActionEvent event) {
         
-    	try {
-    		//make the group into one string
-            StringBuilder group = new StringBuilder();
-            
-           	group.append(CourseInfo);
-           	group.append(meetDay);
-           	group.append(meetTime);
-           	group.append(meetContact);
-           	group.append(availableSeats);
-           	
-            // write the newly created group to the user's groupinfo file
-            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\groupinfo.txt");
-            fileOut.write(group.toString().getBytes());
-            
-            //close the file writer
-            fileOut.close();
-
-        } catch (Exception e) {
-            System.out.println("Problem reading file.");
-        }
-        
+    	try(FileWriter fw = new FileWriter("C:\\Users\\guaco\\Downloads\\Study_Group_App-master\\Study_Group_App\\Project\\model\\groupinfo.txt", true);
+    		    BufferedWriter bw = new BufferedWriter(fw);
+    		    PrintWriter out = new PrintWriter(bw))
+    		{
+    		    out.printf("%s %s %s %s %s %s %s\n", LoginController.user.getUsername(), CourseInfo, meetDay, meetTime, meetLocation, meetContact,  availableSeats);
+    		} 
+    			catch (IOException e) {
+    		    e.printStackTrace();
+    		}
+    	
         
         
     }

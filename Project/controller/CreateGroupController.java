@@ -152,7 +152,7 @@ public class CreateGroupController implements Initializable {
     private void replaceSelected(String type,String replaceWith) {
         try {
             // input the file content to the StringBuffer "inputBuffer"
-            BufferedReader file = new BufferedReader(new FileReader("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\courseinfo.txt"));
+            BufferedReader file = new BufferedReader(new FileReader("C:\\Users\\guaco\\Downloads\\Study_Group_App-master\\Study_Group_App\\Project\\model\\courseinfo.txt"));
             StringBuffer inputBuffer = new StringBuffer();
             String line;
             //while there's a line to read, add to inputBuffer 
@@ -169,7 +169,7 @@ public class CreateGroupController implements Initializable {
             inputStr = inputStr.replaceAll(type, type + replaceWith);
 
             // write the new string with the replaced line OVER the same file
-            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\courseinfo.txt");
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\guaco\\Downloads\\Study_Group_App-master\\Study_Group_App\\Project\\model\\courseinfo.txt");
             fileOut.write(inputStr.getBytes());
             fileOut.close();
 
@@ -182,7 +182,7 @@ public class CreateGroupController implements Initializable {
         
          //scan in the courseinfo file to read it
         try {
-            scn = new Scanner(new File("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\courseinfo.txt"));
+            scn = new Scanner(new File("C:\\Users\\guaco\\Downloads\\Study_Group_App-master\\Study_Group_App\\Project\\model\\courseinfo.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

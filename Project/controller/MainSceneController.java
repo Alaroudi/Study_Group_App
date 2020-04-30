@@ -84,7 +84,8 @@ public class MainSceneController extends LoginController implements Initializabl
 
         }
         else if (event.getSource() == myStudyGroupsButton){
-            
+        	AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/Project/view/MyStudyGroups.fxml"));
+            mainPane.setCenter(root);
             
             
         }

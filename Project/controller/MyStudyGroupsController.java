@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import Project.model.studyGroup;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.*;
@@ -33,35 +35,31 @@ public class MyStudyGroupsController extends LoginController implements Initiali
 	private AnchorPane rootAnchor;
 	
 	@FXML
-	private TableView<String> tbl;
+	private TableView<studyGroup> tbl;
 	
 	@FXML
-	private TableColumn<String, String> courseInfo;
+	private TableColumn<studyGroup, String> courseInfo;
 	
 	@FXML
-	private TableColumn<String, String> day;
+	private TableColumn<studyGroup, String> day;
 	
 	@FXML
-	private TableColumn<String, String> time;
+	private TableColumn<studyGroup, String> time;
 	
 	@FXML
-	private TableColumn<String, String> location;
+	private TableColumn<studyGroup, String> location;
 	
 	@FXML
-	private TableColumn<String, String> contact;
+	private TableColumn<studyGroup, String> contact;
 	
 	@FXML
-	private TableColumn<String, String> seats;
-	
-	@FXML
-	private FontAwesomeIcon back;
+	private TableColumn<studyGroup, String> seats;
 	
 	
-	private Scanner mainScanner;
-    private Scanner lineScanner;
+	Scanner mainScanner;
 	
     //the data that will be displayed in tableview
-    ObservableList<String> list = FXCollections.observableArrayList();
+    ObservableList<studyGroup> list = FXCollections.observableArrayList();
     
     
 	@Override
@@ -75,13 +73,11 @@ public class MyStudyGroupsController extends LoginController implements Initiali
 	        location.setCellValueFactory(new PropertyValueFactory<>("ML"));
 	        contact.setCellValueFactory(new PropertyValueFactory<>("C"));
 	        seats.setCellValueFactory(new PropertyValueFactory<>("SA"));
-
 	        tbl.setItems(list);
-	        
 
 	        //scan in data from the groupinfo.txt file
 	        try {
-	            mainScanner = new Scanner(new File("C:\\Users\\alaro\\Documents\\NetBeansProjects\\Project\\src\\Project\\model\\groupinfo.txt"));
+	            mainScanner = new Scanner(new File("C:\\Users\\guaco\\Downloads\\Study_Group_App-master\\Study_Group_App\\Project\\model\\groupinfo.txt"));
 	        } catch (FileNotFoundException e) {
 	            e.printStackTrace();
 	        }
@@ -89,29 +85,23 @@ public class MyStudyGroupsController extends LoginController implements Initiali
 
 	        //while theres a line to scan within the file
 	        while (mainScanner.hasNextLine()) 
-	        {
-	        	list.add(mainScanner.next());  
+	        {	
+	        	//add only the groups belonging to the specific user
+	        	if(mainScanner.next() == user.getUsername())
+	        	{
+		        	String course = mainScanner.next() + mainScanner.next() + " " + mainScanner.next();
+		        	list.add(new studyGroup(course, mainScanner.next(), mainScanner.next(), mainScanner.next(), mainScanner.next(), mainScanner.next()));
+	        	}
+	        	mainScanner.nextLine();
 	        }
-	     
+	        
+	        //close the scanner
 	            mainScanner.close();
+
 	     }
 	
-	//returns a user back to the main stage after clicking back buttton
-	@FXML
-    private void goBack(MouseEvent event) throws IOException{
-		Parent root = FXMLLoader.load(getClass().getResource("/Project/view/Signup.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.show();
-        
-        Stage oldStage = (Stage) back.getScene().getWindow();
-        oldStage.close();
-    }
-
-
 	    
 	 
 
 }
+
