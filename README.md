@@ -6,7 +6,7 @@
 * Simon Rendon
 
 ## App Overview
-UTSA Study Group apps allows users to create and find study groups for computer science and math classes at UTSA.
+UTSA Study Group app allows users to create and find study groups for computer science and math classes at UTSA.
 
 ## Demo User
 * Username: alaroudi.h
